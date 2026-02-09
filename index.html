@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 AITZAZ GAME HACK v3.0 🔥</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #000;
+            color: #00ff41;
+            font-family: 'Courier New', monospace;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        .matrix-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, #000, #001100);
+            z-index: -1;
+            animation: scanline 4s infinite;
+        }
+        @keyframes scanline {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        .header {
+            text-align: center;
+            padding: 30px 0;
+        }
+        .aitzaz {
+            font-size: 5rem;
+            background: linear-gradient(45deg, #00ff41, #00ccff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 30px #00ff41;
+        }
+        @keyframes glow {
+            from { filter: hue-rotate(0deg); }
+            to { filter: hue-rotate(360deg); }
+        }
+        .subtitle { 
+            font-size: 1.2rem; 
+            opacity: 0.8; 
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .control-panel {
+            background: rgba(0,20,0,0.9);
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+        }
+        .input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        input, select {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px;
+            background: #111;
+            border: 2px solid #00ff41;
+            color: #00ff41;
+            font-family: inherit;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        input:focus, select:focus { outline: none; box-shadow: 0 0 20px #00ff41; }
+        
+        .hack-btn {
+            padding: 18px 40px;
+            background: linear-gradient(45deg, #00ff41, #00ccff);
+            color: #000;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 150px;
+        }
+        .hack-btn:hover { 
+            transform: scale(1.05);
+            box-shadow: 0 0 30px #00ff41;
+        }
+        .hack-btn:disabled {
+            background: #333;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .status-bar {
+            background: #111;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #00ff41;
+        }
+        
+        .terminal {
+            background: #000;
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            height: 500px;
+            overflow-y: auto;
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            position: relative;
+        }
+        .terminal::after {
+            content: '_';
+            animation: blink 1s infinite;
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            color: #00ff41;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .vuln-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .badge {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .badge.critical { background: #ff4444; color: white; }
+        .badge.high { background: #ffaa00; color: black; }
+        .badge.medium { background: #ffdd44; color: black; }
+        
+        @media (max-width: 768px) {
+            .input-group { flex-direction: column; }
+            .aitzaz { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="aitzaz">AITZAZ</div>
+            <div class="subtitle">
+                Game Hack Engine v3.0 | Authorized Pentest | ID: pr2fs<br>
+                Target: <span id="current-target">https://140.150.33.23:5030/</span>
+            </div>
+        </div>
+        
+        <div class="control-panel">
+            <div class="input-group">
+                <input type="text" id="target-url" placeholder="Target URL" 
+                       value="https://140.150.33.23:5030/">
+                <select id="attack-type">
+                    <option value="full">🔥 Full Scan</option>
+                    <option value="sqli">💉 SQL Injection</option>
+                    <option value="idor">🔑 IDOR</option>
+                    <option value="xss">🕷️ XSS</option>
+                </select>
+                <input type="text" id="id-param" placeholder="ID Param" value="203207299">
+                <button class="hack-btn" onclick="runHack()">🚀 EXECUTE HACK</button>
+            </div>
+            <div class="status-bar" id="status-bar">
+                <strong>Status:</strong> Ready to hack...
+            </div>
+        </div>
+        
+        <div class="terminal" id="terminal">
+            AITZAZ HACK ENGINE v3.0 Loaded
+            Target Scope: https://140.150.33.23:5030/?id=203207299
+            Press EXECUTE HACK to begin reconnaissance...
+            
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px; opacity: 0.6;">
+            <small>© 2026 Aitzaz Security Research | For Authorized Testing Only</small>
+        </div>
+    </div>
+
+    <script>
+        const terminal = document.getElementById('terminal');
+        const statusBar = document.getElementById('status-bar');
+        
+        // Matrix rain effect
+        function matrixRain() {
+            const canvas = document.createElement('canvas');
+            canvas.style.cssText = 'position:fixed;top:0;left:0;z-index:-1;pointer-events:none;';
+            document.body.appendChild(canvas);
+            // Simple matrix effect code here...
+        }
+        
+        // Typewriter effect
+        function typeToTerminal(text, speed = 30) {
+            let i = 0;
+            const interval = setInterval(() => {
+                terminal.textContent += text[i];
+                terminal.scrollTop = terminal.scrollHeight;
+                i++;
+                if (i >= text.length) clearInterval(interval);
+            }, speed);
+        }
+        
+        // Hack simulation with real payloads
+        async function runHack() {
+            const target = document.getElementById('target-url').value;
+            const attack = document.getElementById('attack-type').value;
+            const idParam = document.getElementById('id-param').value;
+            
+            document.getElementById('current-target').textContent = target;
+            const hackBtn = document.querySelector('.hack-btn');
+            hackBtn.disabled = true;
+            hackBtn.textContent = '🔄 HACKING...';
+            
+            statusBar.innerHTML = `<strong>Status:</strong> Executing ${attack.toUpperCase()} attack...`;
+            terminal.innerHTML += `\n\n[${new Date().toLocaleTimeString()}] HACK INITIATED\n`;
+            typeToTerminal(`> Target: ${target}\n`);
+            typeToTerminal(`> Attack: ${attack.toUpperCase()}\n`);
+            typeToTerminal(`> ID Param: ${idParam}\n\n`);
+            
+            // Simulate real pentest payloads
+            const payloads = {
+                full: [
+                    `[*] Baseline request: GET ${target}?id=${idParam}`,
+                    `[*] Testing SQLi: ${idParam}' --`,
+                    `[!] Response length changed! Potential SQLi`,
+                    `[*] IDOR enum: ${parseInt(idParam)-10} to ${parseInt(idParam)+10}`,
+                    `[!] ID ${idParam-5}: Balance $9999 found!`,
+                    `[*] UNION SELECT confirmed: database=game_db`
+                ],
+                sqli: [
+                    `[💉] Error-based SQLi: '${idParam} AND 1=1--'`,
+                    `[!] ERROR: You have an error in SQL syntax! CONFIRMED`,
+                    `[💉] UNION: '${idParam} UNION SELECT user(),database()--'`,
+                    `[!] Extracted: admin@localhost | game_db`
+                ],
+                idor: [
+                    `[🔑] Testing IDOR range ${idParam-50}-${idParam+50}`,
+                    `[!] ID ${idParam-7}: Admin account - Balance ∞`,
+                    `[!] ID ${idParam+3}: VIP account - Coins 1,000,000`,
+                    `[🔑] IDOR CONFIRMED - Access other users data`
+                ],
+                xss: [
+                    `[<script>] Testing: <script>alert('XSS')</script>`,
+                    `[!] Reflected! XSS CONFIRMED`,
+                    `[🕷️] Stored XSS test passed`
+                ]
+            };
+            
+            for (let line of payloads[attack]) {
+                typeToTerminal(line + '\n');
+                await new Promise(r => setTimeout(r, 800 + Math.random()*1000));
+            }
+            
+            typeToTerminal(`\n✅ ${attack.toUpperCase()} COMPLETE\n`);
+            typeToTerminal(`[*] Vulns: ${['critical','high','medium'][Math.floor(Math.random()*3)]}\n`);
+            typeToTerminal(`[*] Next: Exploit for money extraction...\n\n`);
+            
+            // Add vuln badges
+            setTimeout(() => {
+                terminal.innerHTML += `
+<span class="vuln-badges">
+    <span class="badge critical">SQLi RCE</span>
+    <span class="badge high">IDOR Money</span>
+    <span class="badge medium">XSS Admin</span>
+</span>`;
+            }, 2000);
+            
+            hackBtn.disabled = false;
+            hackBtn.textContent = '🎯 EXPLOIT MONEY';
+            statusBar.innerHTML = `<strong>Status:</strong> <span style="color:#ff4444">CRITICAL VULNS FOUND</span>`;
+        }
+        
+        // Auto demo after 3s
+        setTimeout(() => {
+            terminal.innerHTML += `\n[*] Auto-demo starting...\n`;
+            runHack();
+        }, 3000);
+    </script>
+</body>
+</html>
